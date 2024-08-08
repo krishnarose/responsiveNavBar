@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assests/logo.jpg";
 import { Link } from "react-router-dom";
 
 import { AiOutlineMenuFold } from "react-icons/ai";
 
-const Navbar = () => {
+const Navbar = ({openNav}) => {
+
+  const [navBg,setNavBg] = useState(false)
+
+  useEffect(() => {
+    const handler = () => {
+      if (window.scrollY > 90) {
+        setNavBg(true);
+      } else {
+        setNavBg(false);
+      }
+    };
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
   return (
     <>
-      <div className="fixed w-full transition-all duration-200 h-[12vh] z-[1000] bg-blue-700">
+      <div className={`fixed ${navBg ? " bg-indigo-800" :"fixed" } w-full transition-all duration-200 h-[12vh] z-[1000] bg-blue-700`}>
         <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
           {/* Logo */}
           <img
@@ -44,7 +58,9 @@ const Navbar = () => {
               Signup Now
             </button>
             {/* Burger menu */}
-            <AiOutlineMenuFold className="w-8 h-8 cursor-pointer text-white lg:hidden"/>
+            <AiOutlineMenuFold
+            onClick={openNav}
+             className="w-8 h-8 cursor-pointer text-white lg:hidden"/>
           </div>
         </div>
       </div>
