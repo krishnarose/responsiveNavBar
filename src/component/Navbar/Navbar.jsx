@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assests/logo.jpg";
+import logo from "../../assests/logo.png";
 import { Link } from "react-router-dom";
 
 import { AiOutlineMenuFold } from "react-icons/ai";
@@ -27,7 +27,7 @@ const Navbar = ({openNav}) => {
           <img
             src={logo}
             alt="Logo"
-            width={80}
+            width={200}
             height={80}
             className="rounded-xl"
           />
